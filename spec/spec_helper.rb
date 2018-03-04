@@ -1,5 +1,7 @@
 require "bundler/setup"
 require "cfyg"
+require 'webmock/rspec'
+WebMock.disable_net_connect!(allow_localhost: false)
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -8,6 +10,7 @@ RSpec.configure do |config|
   # Disable RSpec exposing methods globally on `Module` and `main`
   config.disable_monkey_patching!
 
+  config.expose_dsl_globally = true
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
