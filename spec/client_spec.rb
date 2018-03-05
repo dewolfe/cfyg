@@ -18,4 +18,5 @@ describe Cfyg::Client do
     response = Cfyg::Client.new.send(method: "eth_syncing")
     expect(response.result).to be false
   end
+
 end
