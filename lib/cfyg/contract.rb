@@ -12,16 +12,13 @@ module Cfyg
     end
 
     def compile
-      build_from_str(contract) if contract.is_a?(String)
-      build_from_file(contract) if contract.is_a?(File)
+      build_from_str if contract.is_a?(String)
     end
 
     private
 
     def build_from_str
-      binding.pry
-      resonse = `#{sol_path} --bin #{temp_file}`
-
+      parse_response(`#{sol_path} --bin #{temp_file}`)
     end
 
     def temp_file
@@ -29,6 +26,10 @@ module Cfyg
       temp_sol_file.write(contract)
       temp_sol_file.close
       temp_sol_file.path
+    end
+
+    def parse_response(response)
+      response.split("\n").last
     end
 
 
