@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cfyg (0.1.0)
+    cfyg (0.1.1)
       jsonrpc-client
 
 GEM
