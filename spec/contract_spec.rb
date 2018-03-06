@@ -1,7 +1,15 @@
 require 'spec_helper'
 
 describe Cfyg::Contract do
+
+  before(:suit) do
+    @client = Cfyg::Client.new
+  end
   context "solidity contract is a string" do
+    it "and it raises an error when passed an invalid contract" do
+      sol_string = "this is not a good contract"
+
+    end
     it "and compiles solidity contracts" do
       sol_string = "contract test { function multiply(uint a) returns(uint d) {   return a * 7;   } }"
       client = Cfyg::Client.new

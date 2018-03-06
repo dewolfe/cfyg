@@ -2,4 +2,8 @@ sudo: false
 language: ruby
 rvm:
   - 2.5.0
-before_install: gem install bundler -v 1.16.1
+before_install:
+  gem install bundler -v 1.16.1
+  sudo add-apt-repository ppa:ethereum/ethereum
+  sudo apt-get update
+  sudo apt-get install solc
