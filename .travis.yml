@@ -3,7 +3,7 @@ language: ruby
 rvm:
   - 2.5.0
 before_install:
-  - sudo add-apt-repository ppa:ethereum/ethereumi -y
+  - sudo add-apt-repository ppa:ethereum/ethereum -y
   - sudo apt-get update -q
   - sudo apt-get install solc -y
   - gem install bundler -v 1.16.1
