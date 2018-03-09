@@ -9,7 +9,8 @@ module Cfyg
     private
 
     def parse_response
-      JSON.parse(@response.body).each do |k, v|
+      binding.pry
+      JSON.parse(response.body).each do |k, v|
         instance_variable_set("@#{k}", v)
         self.class.send(:define_method, k) do
           instance_variable_get("@#{k}")

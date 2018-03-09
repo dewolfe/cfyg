@@ -2,24 +2,24 @@ module Cfyg
   class Contract
     require 'tempfile'
     require 'open3'
-    attr_reader :from, :to, :gas, :gas_price, :value
-    attr_accessor :client, :sol_path, :contract, :binary
+    attr_reader  :to, :gas, :gas_price, :value
+    attr_accessor :client, :sol_path, :contract, :binary, :from
 
     def initialize(**args)
       @sol_path = `which solc`.chop
       raise 'unable to locate solc compiler see http://solidity.readthedocs.io/en/develop/installing-solidity.html' if @sol_path.empty?
       @client = args.fetch(:client, Client.new)
       @contract = args.fetch(:contract, '')
-      @from = args.fetch(:from)
-      @to = args.fetch(:to)
-      @gas =args.fetch(:gas)
-      @gas_price = args.fetch(:gas_price)
-      @value = args.fetch(:value)
+      @from = args[:from]
+      @to = args.fetch(:to, nil )
+      @gas =args.fetch(:gas, nil )
+      @gas_price = args.fetch(:gas_price, nil )
+      @value = args.fetch(:value,nil)
 
     end
 
     def compile
-      binary ||= build_from_str if contract.is_a?(String)
+      build_from_str if contract.is_a?(String)
     end
 
     def deploy

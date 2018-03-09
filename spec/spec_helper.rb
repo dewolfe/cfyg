@@ -1,6 +1,8 @@
-require "bundler/setup"
-require "cfyg"
+require 'bundler/setup'
+require 'cfyg'
 require 'webmock/rspec'
+require 'support/stubs'
+
 WebMock.disable_net_connect!(allow_localhost: false)
 
 RSpec.configure do |config|
