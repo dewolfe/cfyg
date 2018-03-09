@@ -15,7 +15,6 @@ module Cfyg
       @gas =args.fetch(:gas, nil )
       @gas_price = args.fetch(:gas_price, nil )
       @value = args.fetch(:value,nil)
-
     end
 
     def compile
@@ -23,7 +22,6 @@ module Cfyg
     end
 
     def deploy
-      binding.pry
       client.send(method: :eth_sendTransaction ,params: [deploy_params])
     end
 
