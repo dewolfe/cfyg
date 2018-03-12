@@ -4,7 +4,11 @@ describe Cfyg::Contract do
 
   before(:all) do
     @client = Cfyg::Client.new
-    @valid_sol_string = "contract test { function multiply(uint a) returns(uint d) {   return a * 7;   } }"
+    @valid_sol_string = "contract test { function multiply(uint a) returns(uint d) {
+                                          return a * 7;   }
+                                          function sum(uint a) returns(uint d) {
+                                          return a + 7;   }
+                                            }"
     @invalid_sol_string = "this is not a good contract"
   end
 
@@ -33,10 +37,9 @@ describe Cfyg::Contract do
                                                     :data=>"0x"})
     end
 
-    it "and invokes a method call with params" do
-      contract = Cfgy::Contract.new(client: @client, contract: @valid_sol_string).deploy
-      contract.multiply(4)
-
+    it 'and it builds function objects' do
+      contract = Cfgy::Contract.new(client: @client, contract: @valid_sol_string)
+      expect contact.functions.size to eq(2)
     end
   end
 end

@@ -3,7 +3,7 @@ module Cfyg
     require 'tempfile'
     require 'open3'
     attr_reader :to, :gas, :gas_price, :value
-    attr_accessor :client, :sol_path, :contract, :binary, :from
+    attr_accessor :client, :sol_path, :contract, :binary, :from, :functions
 
     def initialize(**args)
       @sol_path = `which solc`.chop
@@ -15,6 +15,7 @@ module Cfyg
       @gas = args[:gas]
       @gas_price = args[:gas_price]
       @value = args[:value]
+      @functions = extract_functions
     end
 
     def compile
@@ -25,7 +26,16 @@ module Cfyg
       client.send(method: :eth_sendTransaction, params: [deploy_params])
     end
 
+    def invoke
+
+    end
+
     private
+
+    def extract_functions
+    contract.scan(/(?<=function).*?\)/)
+    end
+
 
     def deploy_params
       { from: from, to: to, gas: hex_value(gas), gasPrice: hex_value(gas_price),
