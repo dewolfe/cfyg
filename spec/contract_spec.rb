@@ -32,5 +32,11 @@ describe Cfyg::Contract do
                                                     :gasPrice=>"0xbb8", :value=>"0x7d0",
                                                     :data=>"0x"})
     end
+
+    it "and invokes a method call with params" do
+      contract = Cfgy::Contract.new(client: @client, contract: @valid_sol_string).deploy
+      contract.multiply(4)
+
+    end
   end
 end

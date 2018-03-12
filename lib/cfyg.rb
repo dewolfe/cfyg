@@ -7,6 +7,7 @@ require 'cfyg/version'
 require 'cfyg/client'
 require 'cfyg/response'
 require 'cfyg/contract'
+require 'cfyg/function'
 module Cfyg
   # Your code goes here...
 end
